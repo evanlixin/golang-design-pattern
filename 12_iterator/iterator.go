@@ -6,6 +6,7 @@ type Aggregate interface {
 	Iterator() Iterator
 }
 
+// 迭代器接口
 type Iterator interface {
 	First()
 	IsDone() bool
@@ -23,6 +24,7 @@ func NewNumbers(start, end int) *Numbers {
 	}
 }
 
+// 对象迭代器
 func (n *Numbers) Iterator() Iterator {
 	return &NumbersIterator{
 		numbers: n,
@@ -30,6 +32,7 @@ func (n *Numbers) Iterator() Iterator {
 	}
 }
 
+// 迭代器对象
 type NumbersIterator struct {
 	numbers *Numbers
 	next    int

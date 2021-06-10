@@ -2,10 +2,13 @@ package command
 
 import "fmt"
 
+// Command接口
 type Command interface {
 	Execute()
 }
 
+// 本质是 把 某个对象的方法调用 封装到对象中，方便传递、存储、调用。
+// 开始命令
 type StartCommand struct {
 	mb *MotherBoard
 }
@@ -20,6 +23,7 @@ func (c *StartCommand) Execute() {
 	c.mb.Start()
 }
 
+// 重启命令
 type RebootCommand struct {
 	mb *MotherBoard
 }
@@ -34,6 +38,7 @@ func (c *RebootCommand) Execute() {
 	c.mb.Reboot()
 }
 
+// 具体的实例
 type MotherBoard struct{}
 
 func (*MotherBoard) Start() {
@@ -44,6 +49,7 @@ func (*MotherBoard) Reboot() {
 	fmt.Print("system rebooting\n")
 }
 
+// 盒子 button 对应不同的命令组合
 type Box struct {
 	button1 Command
 	button2 Command

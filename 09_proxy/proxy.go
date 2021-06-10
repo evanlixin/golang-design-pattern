@@ -10,6 +10,7 @@ func (RealSubject) Do() string {
 	return "real"
 }
 
+// 代理对象
 type Proxy struct {
 	real RealSubject
 }

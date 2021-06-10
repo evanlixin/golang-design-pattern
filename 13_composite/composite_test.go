@@ -1,5 +1,10 @@
 package composite
 
+import (
+	"fmt"
+	"testing"
+)
+
 func ExampleComposite() {
 	root := NewComponent(CompositeNode, "root")
 	c1 := NewComponent(CompositeNode, "c1")
@@ -26,4 +31,33 @@ func ExampleComposite() {
 	//  +c2
 	//   -l2
 	//   -l3
+}
+
+func TestNewEmployee(t *testing.T) {
+	CEO := NewEmployee("John", "CEO", 30000)
+	headSales := NewEmployee("Robert", "Head Sales", 20000)
+	headMarketing := NewEmployee("Michel", "Head Marketing", 20000)
+
+	clerk1 := NewEmployee("Laura", "Marketing", 10000)
+	clerk2 := NewEmployee("Bob", "Marketing", 10000)
+
+	salesExecutive1 := NewEmployee("Richard", "Sales", 10000)
+	salesExecutive2 := NewEmployee("Rob", "Sales", 10000)
+
+	CEO.Add(headSales)
+	CEO.Add(headMarketing)
+
+	headSales.Add(salesExecutive1)
+	headSales.Add(salesExecutive2)
+
+	headMarketing.Add(clerk1)
+	headMarketing.Add(clerk2)
+
+	fmt.Println(CEO.ToString())
+	for _, e := range CEO.GetSubordinates() {
+		fmt.Println(e.ToString())
+		for _, ec := range e.GetSubordinates() {
+			fmt.Println(ec.ToString())
+		}
+	}
 }

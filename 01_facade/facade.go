@@ -10,11 +10,13 @@ func NewAPI() API {
 }
 
 //API is facade interface of facade package
+// 门面接口
 type API interface {
 	Test() string
 }
 
-//facade implement
+// facade implement
+// 门面/外观模式实现, 通过结构体封装不同接口, 实现某种功能
 type apiImpl struct {
 	a AModuleAPI
 	b BModuleAPI
@@ -52,6 +54,7 @@ type BModuleAPI interface {
 	TestB() string
 }
 
+// 结构不需要对外暴露，初始化时通过特定的options和接口对外暴露
 type bModuleImpl struct{}
 
 func (*bModuleImpl) TestB() string {

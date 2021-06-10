@@ -15,6 +15,7 @@ type MulDecorator struct {
 	num int
 }
 
+// 封装 装饰器
 func WarpMulDecorator(c Component, num int) Component {
 	return &MulDecorator{
 		Component: c,

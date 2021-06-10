@@ -13,3 +13,18 @@ func ExamplePayByBank() {
 	// Output:
 	// Pay $888 to Bob by bank account 0002
 }
+
+func ExampleOperationAdd_DoOperation() {
+	operation := NewCalculation(&OperationAdd{})
+	operation.ExecuteStrategy(1, 2)
+}
+
+func ExampleOperationSubtract_DoOperation() {
+	operation := NewCalculation(&OperationSubtract{})
+	operation.ExecuteStrategy(2, 1)
+}
+
+func ExampleOperationMultiply_DoOperation() {
+	operation := NewCalculation(&OperationMultiply{})
+	operation.ExecuteStrategy(2, 1)
+}
